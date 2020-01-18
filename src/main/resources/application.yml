@@ -1,0 +1,28 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: snails-api
+  # mysql 属性配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://ser1.dxlocal.net:3306/snails?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  jpa:
+    show-sql: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+# jwt
+audience:
+  client-id: 098f6bcd4621d373cade4e832627b4f6
+  base64-secret: NzQ4ZmExZWUyMGQ2OGM5MzlmNmQ2N2VjZWNiNTg5MTY=
+  name: snails
+  expires-second: 3600

@@ -48,6 +48,11 @@ public class PersonApi {
     HttpServletRequest servletRequest;
 
 
+    @GetMapping("num")
+    public Result num() {
+        return Result.ofsuccess(personJpa.count());
+    }
+
     @PostMapping("/account/login")
     public Result create(@RequestBody Map loginIdentity) {
 

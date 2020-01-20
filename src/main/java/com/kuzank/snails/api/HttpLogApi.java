@@ -1,6 +1,7 @@
 package com.kuzank.snails.api;
 
 import com.kuzank.snails.core.Result;
+import com.kuzank.snails.jpa.HttpLogJpa;
 import com.kuzank.snails.service.HttpLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,15 @@ import java.util.LinkedHashMap;
 public class HttpLogApi {
 
     @Autowired
+    HttpLogJpa httpLogJpa;
+    @Autowired
     HttpLogService httpLogService;
 
+
+    @GetMapping("num")
+    public Result num() {
+        return Result.ofsuccess(httpLogJpa.count());
+    }
 
     @PostMapping("/find")
     public Result find(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,

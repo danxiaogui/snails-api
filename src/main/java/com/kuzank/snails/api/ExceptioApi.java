@@ -1,6 +1,7 @@
 package com.kuzank.snails.api;
 
 import com.kuzank.snails.core.Result;
+import com.kuzank.snails.jpa.ExceptioJpa;
 import com.kuzank.snails.service.ExceptioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,15 @@ import java.util.LinkedHashMap;
 public class ExceptioApi {
 
     @Autowired
+    ExceptioJpa exceptioJpa;
+    @Autowired
     ExceptioService exceptioService;
+
+
+    @GetMapping("num")
+    public Result num() {
+        return Result.ofsuccess(exceptioJpa.count());
+    }
 
     @PostMapping("/find")
     public Result find(@RequestParam(value = "pageNumber", required = false) Integer pageNumber,

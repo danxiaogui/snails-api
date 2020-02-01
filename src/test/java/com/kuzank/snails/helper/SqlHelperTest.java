@@ -27,7 +27,7 @@ public class SqlHelperTest {
         List list = sqlHelper.query(sql);
 
         for (Object o : list) {
-            System.out.println(GsonUtil.fromJson(o));
+            System.out.println(GsonUtil.toJson(o));
         }
     }
 
@@ -41,7 +41,7 @@ public class SqlHelperTest {
         List list = sqlHelper.query(sql, map);
 
         for (Object o : list) {
-            System.out.println(GsonUtil.fromJson(o));
+            System.out.println(GsonUtil.toJson(o));
         }
     }
 
@@ -55,7 +55,7 @@ public class SqlHelperTest {
         List list = sqlHelper.query(sql);
 
         for (Object o : list) {
-            System.out.println(GsonUtil.fromJson(o));
+            System.out.println(GsonUtil.toJson(o));
         }
     }
 
@@ -73,7 +73,7 @@ public class SqlHelperTest {
         List list = sqlHelper.query(sql);
 
         for (Object o : list) {
-            System.out.println(GsonUtil.fromJson(o));
+            System.out.println(GsonUtil.toJson(o));
         }
     }
 }

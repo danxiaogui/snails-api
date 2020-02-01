@@ -54,7 +54,7 @@ public class HttpLog extends Base {
 
         Map parameterMap = request.getParameterMap();
         if (parameterMap != null) {
-            obj.setParam(GsonUtil.fromJson(parameterMap));
+            obj.setParam(GsonUtil.toJson(parameterMap));
         }
 
         return obj;

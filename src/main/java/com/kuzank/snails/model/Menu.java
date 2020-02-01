@@ -24,6 +24,9 @@ public class Menu extends Base {
     private String url;
     @Column
     private String icon;
+    // 是否继承父级菜单的权限 yes no
+    @Column(columnDefinition = "varchar(32) default 'no'")
+    private String inherit;
     @Lob
     @Column(columnDefinition = "TEXT")
     private String idpath;
@@ -42,6 +45,22 @@ public class Menu extends Base {
             obj.setIdpath(id);
         }
         return obj;
+    }
+
+    /**
+     * 继承父级菜单的权限
+     */
+    public Menu setInherit() {
+        this.setInherit("yes");
+        return this;
+    }
+
+    /**
+     * 不继承父级菜单的权限
+     */
+    public Menu setUnInherit() {
+        this.setInherit("no");
+        return this;
     }
 }
 

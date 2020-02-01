@@ -1,17 +1,22 @@
 package com.kuzank.snails.api;
 
 import com.kuzank.snails.core.Result;
+import com.kuzank.snails.helper.SqlHelper;
 import com.kuzank.snails.jpa.MenuJpa;
+import com.kuzank.snails.jpa.PermissionJpa;
 import com.kuzank.snails.jpa.PersonJpa;
 import com.kuzank.snails.model.Menu;
 import com.kuzank.snails.model.Person;
+import com.kuzank.snails.service.IdentityService;
 import com.kuzank.snails.service.MenuService;
+import com.kuzank.snails.util.RequestUtil;
 import com.kuzank.snails.util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -30,18 +35,54 @@ public class MenuApi {
     MenuJpa menuJpa;
     @Autowired
     PersonJpa personJpa;
+    @Autowired
+    SqlHelper sqlHelper;
+    @Autowired
+    PermissionJpa permissionJpa;
+    @Autowired
+    IdentityService identityService;
+    @Autowired
+    HttpServletRequest servletRequest;
 
 
-    @GetMapping("/list")
-    public Result list() {
-        return Result.ofsuccess(menuJpa.findAll());
+    @GetMapping("/get")
+    public Result get() {
+        String token = RequestUtil.getToken(servletRequest);
+        Person person = identityService.getPersonByToken(token);
+        return Result.ofsuccess(person != null ? menuJpa.getByPerson(person.getId()) : new ArrayList<>());
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/getByPerson/{id}")
+    public Result getByPerson(@PathVariable String id) {
+        return Result.ofsuccess(menuJpa.getByPerson(id));
+    }
+
+    @GetMapping("/getByOrgunit/{id}")
+    public Result getByOrgunit(@PathVariable String id) {
+        return Result.ofsuccess(menuJpa.getByOrgunit(id));
+    }
+
+
+    @GetMapping("/configData")
+    public Result configData() {
+
+        Map map = new HashMap();
+
+        String sql = String.format("" +
+                "SELECT id,title,pid,'bank' as icon,false as permission FROM sys_orgunit\n" +
+                "UNION ALL\n" +
+                "SELECT id,title,orgunit AS pid,'user' as icon,false as permission FROM sys_person");
+
+        map.put("menus", menuJpa.findAll());
+        map.put("peoples", sqlHelper.query(sql));
+
+        return Result.ofsuccess(map);
+    }
+
+    @GetMapping("/configDetail/{id}")
     public Result detail(@PathVariable String id) {
 
         Menu menu = new Menu();
-        List<Person> personList = personJpa.findAllByOrgunit(id);
 
         Optional<Menu> optional = menuJpa.findById(id);
         if (optional.isPresent()) {
@@ -50,7 +91,7 @@ public class MenuApi {
 
         Map map = new HashMap();
         map.put("menu", menu);
-        map.put("personList", personList);
+        map.put("permission", permissionJpa.getByResource(id));
 
         return Result.ofsuccess(map);
     }

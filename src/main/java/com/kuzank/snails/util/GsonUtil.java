@@ -20,7 +20,7 @@ public class GsonUtil {
         return gson.fromJson(gson.toJson(o), Map.class);
     }
 
-    public static String fromJson(Object o) {
+    public static String toJson(Object o) {
         return gson.toJson(o);
     }
 

@@ -29,15 +29,15 @@ public class InitPerson implements Initialize {
     @Autowired
     OrgunitJpa orgunitJpa;
 
-    public static String person_kuzank_id = "01";
-    public static String person_danxiaogui_id = "02";
+    public static String person_kuzank_id = "a0000000000000000000000000000001";
+    public static String person_danxiaogui_id = "a0000000000000000000000000000002";
 
-    public static String account_kuzan_id = "11";
-    public static String account_danxiaogui_id = "12";
+    public static String account_kuzan_id = "b0000000000000000000000000000001";
+    public static String account_danxiaogui_id = "b0000000000000000000000000000002";
 
-    public static String orgunit_root_id = "21";
-    public static String orgunit_dev_id = "22";
-    public static String orgunit_finance_id = "23";
+    public static String orgunit_root_id = "c0000000000000000000000000000001";
+    public static String orgunit_dev_id = "c0000000000000000000000000000002";
+    public static String orgunit_finance_id = "c0000000000000000000000000000003";
 
 
     @Override
@@ -46,7 +46,7 @@ public class InitPerson implements Initialize {
         Person person_kuzank = Person.of(person_kuzank_id, "kuzank", orgunit_dev_id);
         Person person_danxiaogui = Person.of(person_danxiaogui_id, "danxiaogui", orgunit_finance_id);
 
-        Account account_kuzan = Account.of(account_kuzan_id, "kuzan", DigestUtils.md5Hex("123456"), person_kuzank_id);
+        Account account_kuzan = Account.of(account_kuzan_id, "kuzank", DigestUtils.md5Hex("123456"), person_kuzank_id);
         Account account_danxiaogui = Account.of(account_danxiaogui_id, "danxiaogui", DigestUtils.md5Hex("123456"), person_danxiaogui_id);
 
         Orgunit orgunit_root = Orgunit.of(orgunit_root_id, "Snails Studio", null, null);

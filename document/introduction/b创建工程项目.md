@@ -1,6 +1,6 @@
 # 创建工程
 ```text
-🐌snails是一个基于 Spring-Boot + Angular + Ng-Zorro 前后端分离项目的简单实现，因此我们会创建两个项目，分别是：
+snails是一个基于 Spring-Boot + Angular + Ng-Zorro 前后端分离项目的简单实现，因此我们会创建两个项目，分别是：
 1、snails-web：Angular + Ng-Zorro + Ng-Alain
 2、snails-api：Sprint-Boot + JPA + lombok + Java8 + Mysql
 以下是创建项目的过程。

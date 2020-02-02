@@ -1,9 +1,15 @@
-<h1 align="center"><a href="https://gitee.com/kuzan/snails-api">snails-api</a></h1>
-一个基于 Spring-Boot + Angular + Ng-Zorro 前后端分离项目的简单实现
+# snails-api
+`snails-api` 为 `snails-web` 提供后台 `REST API` 接口
 
-- [snails 框架](https://gitee.com/kuzan/snails)：编程入门，新手礼赞
-- [snails-web 前端](https://gitee.com/kuzan/snails-web)：Angular + Ng-Zorro + Ng-Alain
-- [snails-api 后台](https://gitee.com/kuzan/snails-api)：Sprint-Boot + JPA + lombok + Java8 + Mysql
+- `Snails 框架`：是一个基于 Spring-Boot + Angular + Ng-Zorro 前后端分离项目的简单实现
+- `snails-web 前端`：[Angular](https://angular.cn/) + [Ng-Zorro](https://ng.ant.design/docs/introduce/zh) + [Ng-Alain](https://ng-alain.com)
+- `snails-api 后台`：[SpringBoot](https://spring.io/projects/spring-boot) + [JPA ](https://spring.io/guides/gs/accessing-data-jpa/)+ [lombok](https://projectlombok.org/) + [Java8](https://zhuanlan.zhihu.com/java8) + Mysql
+
+|      `框架源码`     | Gitee                                                        | GitHub                                                       |
+| -------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Snails** 框架      | [https://gitee.com/kuzan/snails](https://gitee.com/kuzan/snails) | [https://github.com/danxiaogui/snails](https://github.com/danxiaogui/snails) |
+| **Snails-web** 前端  | [https://gitee.com/kuzan/snails-web](https://gitee.com/kuzan/snails-web) | [https://github.com/danxiaogui/snails-web](https://github.com/danxiaogui/snails-web) |
+| **Snails-api**  后台 | [https://gitee.com/kuzan/snails-api](https://gitee.com/kuzan/snails-api) | [https://github.com/danxiaogui/snails-api](https://github.com/danxiaogui/snails-api) |
 
 ## 开发环境要求
 - Java 8
@@ -17,7 +23,7 @@ grant all privileges on snails.* to 'root'@'%' identified by '123456';
 flush privileges;
 ```
 
-## 启动程序 - 方法1
+## 启动程序 - 方法一
 前提：系统已安装 docker
 
 注意：若 mysql 运行在 docker 中，会出现错误，docker 两个实例之间不能互相访问，需要进行配置处理
@@ -32,7 +38,7 @@ docker run -d --name snails-api -p 8081:8081 -t snails-api
 docker ps -a 
 ```
 
-## 启动程序 - 方法3
+## 启动程序 - 方法二
 ```shell script
 maven clean;     # maven 清理
 maven package    # 打包
@@ -40,7 +46,7 @@ maven package    # 打包
 java -jar target/snails-0.1.jar
 ```
 
-## 启动程序 - 方法3
+## 启动程序 - 方法三
 ![](https://tva1.sinaimg.cn/large/006tNbRwgy1gal7od3eqfj30oq0c3tat.jpg)
 ```shell script
   .   ____          _            __ _ _
@@ -80,6 +86,7 @@ java -jar target/snails-0.1.jar
 2020-01-14 15:27:41.029  INFO 29267 --- [  restartedMain] com.kuzank.snails.init.DBInit            : ApplicationReadyEvent : init DB successful !
 ```
 
+
 ## 学习资源
 - [Angular快速上手](https://angular.cn/guide/quickstart)
 - [Ng-Zorro](https://ng.ant.design/docs/introduce/zh)
@@ -89,5 +96,3 @@ java -jar target/snails-0.1.jar
 - [Java8](https://zhuanlan.zhihu.com/java8)
 - [lombok](https://www.jianshu.com/p/365ea41b3573)
 - [SpringBoot 中 JPA 的使用](https://www.jianshu.com/p/c14640b63653)
-
-

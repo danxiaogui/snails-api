@@ -18,6 +18,8 @@ import java.util.List;
 @Repository
 public interface MenuJpa extends JpaRepository<Menu, String>, JpaSpecificationExecutor {
 
+    List<Menu> findAllByOrderBySorttAsc();
+
     @Transactional
     @Modifying
     void deleteByIdpathLike(String id);
@@ -36,7 +38,7 @@ public interface MenuJpa extends JpaRepository<Menu, String>, JpaSpecificationEx
             "    ELSE 0 END ) = 1\n" +
             "    AND u0.idpath LIKE CONCAT( '%', ux.resource, '%' )\n" +
             "  )\n" +
-            "  ORDER BY LENGTH( u0.idpath ) ASC", nativeQuery = true)
+            "  ORDER BY LENGTH( u0.idpath ) ASC,u0.sortt ASC", nativeQuery = true)
     List<Menu> getByPerson(String personid);
 
 
@@ -50,6 +52,6 @@ public interface MenuJpa extends JpaRepository<Menu, String>, JpaSpecificationEx
             "    ELSE 0 END ) = 1\n" +
             "    AND u0.idpath LIKE CONCAT( '%', ux.resource, '%' )\n" +
             "  )\n" +
-            " ORDER BY LENGTH( u0.idpath ) ASC", nativeQuery = true)
+            " ORDER BY LENGTH( u0.idpath ) ASC,u0.sortt ASC", nativeQuery = true)
     List<Menu> getByOrgunit(String orgunitid);
 }

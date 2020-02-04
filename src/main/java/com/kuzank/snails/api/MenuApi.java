@@ -73,7 +73,7 @@ public class MenuApi {
                 "UNION ALL\n" +
                 "SELECT id,title,orgunit AS pid,'user' as icon,false as permission FROM sys_person");
 
-        map.put("menus", menuJpa.findAll());
+        map.put("menus", menuJpa.findAllByOrderBySorttAsc());
         map.put("peoples", sqlHelper.query(sql));
 
         return Result.ofsuccess(map);

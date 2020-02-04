@@ -30,9 +30,11 @@ public class Menu extends Base {
     @Lob
     @Column(columnDefinition = "TEXT")
     private String idpath;
+    @Column
+    private String sortt;
 
 
-    public static Menu of(String id, String title, String url, String icon, Menu parent) {
+    public static Menu of(String id, String title, String url, String icon, Menu parent, String sortt) {
         Menu obj = new Menu();
         obj.setId(id);
         obj.setTitle(title);
@@ -44,6 +46,7 @@ public class Menu extends Base {
         } else {
             obj.setIdpath(id);
         }
+        obj.setSortt(sortt);
         return obj;
     }
 

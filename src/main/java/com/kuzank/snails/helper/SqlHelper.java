@@ -18,21 +18,43 @@ import java.util.Map;
  * @author kuzank 2020/1/31
  */
 @Service
-public class SqlHelper<T> {
+public class SqlHelper {
 
     @PersistenceContext
     private EntityManager entityManager;
 
 
-    public List<T> query(String sql) {
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void save(Object entity) {
+        entityManager.persist(entity);
+    }
+
+    public void update(Object entity) {
+        entityManager.merge(entity);
+    }
+
+    public <T> void delete(Class<T> entityClass, Object entityid) {
+        delete(entityClass, new Object[]{entityid});
+    }
+
+    public <T> void delete(Class<T> entityClass, Object[] entityids) {
+        for (Object id : entityids) {
+            entityManager.remove(entityManager.getReference(entityClass, id));
+        }
+    }
+
+    public List<Map<String, Object>> query(String sql) {
 
         Query query = entityManager.createNativeQuery(sql);
         query.unwrap(SQLQuery.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP);
 
-        return (List<T>) query.getResultList();
+        return query.getResultList();
     }
 
-    public List<T> query(String sql, Map<String, Object> params) {
+    public List<Map<String, Object>> query(String sql, Map<String, Object> params) {
         Query query = entityManager.createNativeQuery(sql);
         params.forEach((key, val) ->
                 query.setParameter(key, val)

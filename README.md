@@ -1,3 +1,6 @@
+### 源码仓库已迁移到 [gitee.com/kuzank](gitee.com/kuzank)，此账号下的工程不再提供维护，请移步访问[gitee.com/kuzank](gitee.com/kuzank)
+
+
 # snails-api
 `snails-api` 为 `snails-web` 提供后台 `REST API` 接口
 
